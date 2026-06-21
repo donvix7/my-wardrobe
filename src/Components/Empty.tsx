@@ -15,11 +15,9 @@ export default function Empty({
   return (
     <View style={globalStyles.empty}>
       <Text style={globalStyles.title}>{title}</Text>
-      <Text style={globalStyles.subTitle}>{subtitle}</Text>
-      <TouchableOpacity style={globalStyles.button}>
-        <Text onPress={onPress} style={globalStyles.buttonText}>
-          {buttonText}
-        </Text>
+      <Text style={globalStyles.emptyText}>{subtitle}</Text>
+      <TouchableOpacity onPress={onPress} style={globalStyles.button}>
+        <Text style={globalStyles.buttonText}>{buttonText}</Text>
       </TouchableOpacity>
     </View>
   );

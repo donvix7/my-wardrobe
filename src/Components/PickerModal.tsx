@@ -1,5 +1,5 @@
 import { Picker } from "@react-native-picker/picker";
-import { StyleSheet, View } from "react-native";
+import { Button, StyleSheet, View } from "react-native";
 import { colors, globalStyles } from "../styles/global";
 
 export default function PickerModal({
@@ -14,9 +14,8 @@ export default function PickerModal({
   setCategory: (category: string) => void;
 }) {
   return (
-    <View style={globalStyles.container}>
+    <View style={globalStyles.pickerContainer}>
       <Picker
-        style={globalStyles.pickerContainer}
         selectedValue={category}
         onValueChange={(selectedValue: any) => {
           setCategory(selectedValue);
@@ -32,6 +31,11 @@ export default function PickerModal({
           />
         ))}
       </Picker>
+      <Button
+        title="Close"
+        color={colors.text}
+        onPress={() => setModalVisible(false)}
+      />
     </View>
   );
 }
@@ -73,5 +77,24 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     gap: 10,
     alignItems: "center",
+  },
+
+  pickerContainer: {
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+    backgroundColor: colors.background,
+  },
+  picker: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+    backgroundColor: colors.accent,
+  },
+  pickerItem: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+    backgroundColor: colors.accent,
   },
 });

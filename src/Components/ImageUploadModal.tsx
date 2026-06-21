@@ -39,8 +39,8 @@ export default function ImageUploadModal({
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={globalStyles.subTitle}>Upload Image</Text>
+      <View style={styles.textContainer}>
+        <Text style={globalStyles.title}>Upload Image</Text>
         <Text style={globalStyles.subTitle}>
           Select an image from your device
         </Text>
@@ -67,39 +67,43 @@ export default function ImageUploadModal({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: colors.background,
-    paddingTop: 60,
+    paddingVertical: 100,
     paddingHorizontal: 20,
     justifyContent: "center",
+    alignItems: "center",
     height: "100%",
+    width: "100%",
+    gap: 20,
+  },
+
+  textContainer: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
   },
 
   icons: {
     color: colors.textSecondary,
-    backgroundColor: colors.accent,
-    padding: 10,
+    padding: 5,
     borderRadius: 10,
     alignItems: "center",
-    marginTop: 10,
     flexDirection: "column",
-    gap: 10,
+    gap: 4,
     justifyContent: "center",
     width: 70,
     height: 70,
-    flex: 1,
   },
 
   iconText: {
-    flexDirection: "row",
-    gap: 10,
-    alignItems: "center",
+    fontSize: 12,
     color: colors.textSecondary,
   },
   list: {
-    flexDirection: "row",
-    paddingHorizontal: 80,
     gap: 10,
+    flexDirection: "row",
+
     alignItems: "center",
     justifyContent: "center",
   },

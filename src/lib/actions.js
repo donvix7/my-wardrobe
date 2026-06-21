@@ -43,6 +43,24 @@ export async function addPreset(preset) {
   }
 }
 
+export async function deletePreset(index) {
+  try {
+    const existingPresetsStr = await AsyncStorage.getItem(PRESETS_KEY);
+    if (existingPresetsStr) {
+      const presets = JSON.parse(existingPresetsStr);
+      if (Array.isArray(presets)) {
+        presets.splice(index, 1);
+        await AsyncStorage.setItem(PRESETS_KEY, JSON.stringify(presets));
+        return true;
+      }
+    }
+    return false;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
 export async function addItem(item) {
   return createItem(item);
 }

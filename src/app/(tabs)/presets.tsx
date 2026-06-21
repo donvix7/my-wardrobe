@@ -3,13 +3,14 @@ import Header from "@/Components/Header";
 import { getPreset } from "@/lib/service";
 import { globalStyles } from "@/styles/global";
 import { useEffect, useState } from "react";
-import { Image, ScrollView, Text, View } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 export default function presets() {
   const [items, setItems] = useState<any[]>([]);
 
   const loadItems = async () => {
     const item = await getPreset();
+
     if (item) {
       setItems(item);
     }
@@ -25,13 +26,17 @@ export default function presets() {
       <View>
         {items?.length > 0 ? (
           items.map((item: any, index: number) => (
-            <View key={index} style={globalStyles.previewCard}>
+            <TouchableOpacity
+              key={index}
+              style={globalStyles.previewCard}
+              onPress={() => {}}
+            >
               <Image
                 style={globalStyles.previewCardImage}
                 source={{ uri: item.image }}
               />
               <Text style={globalStyles.subTitle}>{item.description}</Text>
-            </View>
+            </TouchableOpacity>
           ))
         ) : (
           <Empty

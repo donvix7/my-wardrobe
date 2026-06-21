@@ -3,9 +3,9 @@ import Empty from "@/Components/Empty";
 import Header from "@/Components/Header";
 import PreviewCard from "@/Components/PreviewCard";
 import { getLastPreset } from "@/lib/service";
-import { globalStyles } from "@/styles/global";
+import { colors, globalStyles } from "@/styles/global";
 import { useEffect, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 export default function create() {
   const [items, setItems] = useState<any>([]);
@@ -30,8 +30,35 @@ export default function create() {
       {isPreview ? (
         <>
           {items ? (
-            <View>
-              <Text style={globalStyles.title}>Preview</Text>
+            <View
+              style={{
+                gap: 10,
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <View>
+                  <Text style={globalStyles.title}>Preview</Text>
+                  <Text style={globalStyles.subTitle}>Your latest outfit</Text>
+                </View>
+                <TouchableOpacity
+                  style={{
+                    padding: 12,
+                    paddingHorizontal: 20,
+                    backgroundColor: colors.primary,
+                    borderRadius: 10,
+                  }}
+                  onPress={() => setIsPreview(false)}
+                >
+                  <Text style={globalStyles.buttonText}>New Outfit</Text>
+                </TouchableOpacity>
+              </View>
+
               {items.map((item: any, index: number) => (
                 <PreviewCard
                   key={index}
@@ -52,7 +79,12 @@ export default function create() {
         </>
       ) : (
         <>
-          <CreateForm />
+          <CreateForm
+            onCreateSuccess={() => {
+              loadItem();
+              setIsPreview(true);
+            }}
+          />
         </>
       )}
     </ScrollView>
